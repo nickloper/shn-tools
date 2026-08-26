@@ -121,7 +121,14 @@
     }
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
-    select { padding-left: 11px; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2370ad47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+    select {
+      padding-left: 11px;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2370ad47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
     input[type="number"]:focus, select:focus {
       outline: none;
       border-color: #70ad47;
@@ -149,7 +156,6 @@
       color: white;
       margin-bottom: 18px;
       display: flex;
-      gap: 0;
       align-items: stretch;
     }
     .hero-half {
@@ -190,7 +196,11 @@
     }
     @media (max-width: 460px) {
       .hero-card { flex-direction: column; gap: 20px; }
-      .hero-half + .hero-half { border-left: none; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; }
+      .hero-half + .hero-half {
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,0.3);
+        padding-top: 20px;
+      }
     }
 
     /* Breakdown */
@@ -220,7 +230,13 @@
       font-size: 1rem;
     }
     .brow .blabel { color: #3a5228; flex: 1; }
-    .brow .blabel small { display: block; font-size: 0.73rem; color: #7a9a60; font-style: italic; margin-top: 1px; }
+    .brow .blabel small {
+      display: block;
+      font-size: 0.73rem;
+      color: #7a9a60;
+      font-style: italic;
+      margin-top: 1px;
+    }
     .brow .bval { font-weight: bold; color: #253318; white-space: nowrap; }
     .brow.deduct .bval { color: #5c7245; }
     .brow.total-row .bval { color: #70ad47; font-size: 1.05rem; }
@@ -233,6 +249,7 @@
       text-align: center;
       line-height: 1.6;
       padding: 0 8px;
+      margin-top: 24px;
     }
 
     .hidden { display: none !important; }
@@ -244,7 +261,7 @@
   <div class="calc-header">
     <h1>Side Hustle <em>Tax Calculator</em></h1>
     <p>See exactly how much to set aside — and what you'll owe each quarter.</p>
-    <span class="year-badge">2025 TAX YEAR · FEDERAL ONLY</span>
+    <span class="year-badge">2026 TAX YEAR · FEDERAL ONLY</span>
   </div>
 
   <!-- Inputs -->
@@ -351,7 +368,7 @@
       <div class="brow deduct">
         <span class="blabel">
           QBI deduction (§199A)
-          <small>20% pass-through deduction — income limits apply</small>
+          <small>20% pass-through deduction — income limits apply above ~$202k</small>
         </span>
         <span class="bval" id="b-qbi">—</span>
       </div>
@@ -372,19 +389,45 @@
   </div>
 
   <p class="disclaimer">
-    Estimates use 2025 federal tax brackets and standard deductions (single: $15,000 · married: $30,000).
+    Estimates use 2026 federal tax brackets (IRS Rev. Proc. 2025-32) and standard deductions (single: $16,100 · married: $32,200).
     Does not include state income tax, alternative minimum tax, additional Medicare surtax, or QBI phase-out at higher incomes.
     Not tax advice — talk to a CPA or enrolled agent for your specific situation.
   </p>
 
 </div>
 <script>
+  // 2026 Federal Tax Brackets — IRS Revenue Procedure 2025-32
+  // Note: OBBBA restored a 35% bracket between 32% and 37%
   const BRACKETS = {
-    single:  [{min:0,max:11925,r:.10},{min:11925,max:48475,r:.12},{min:48475,max:103350,r:.22},{min:103350,max:197300,r:.24},{min:197300,max:250525,r:.32},{min:250525,max:Infinity,r:.37}],
-    married: [{min:0,max:23850,r:.10},{min:23850,max:96950,r:.12},{min:96950,max:206700,r:.22},{min:206700,max:394600,r:.24},{min:394600,max:501050,r:.32},{min:501050,max:Infinity,r:.37}]
+    single: [
+      { min: 0,       max: 12400,   r: 0.10 },
+      { min: 12400,   max: 50400,   r: 0.12 },
+      { min: 50400,   max: 105700,  r: 0.22 },
+      { min: 105700,  max: 201775,  r: 0.24 },
+      { min: 201775,  max: 256225,  r: 0.32 },
+      { min: 256225,  max: 640600,  r: 0.35 },
+      { min: 640600,  max: Infinity,r: 0.37 }
+    ],
+    married: [
+      { min: 0,       max: 24800,   r: 0.10 },
+      { min: 24800,   max: 100800,  r: 0.12 },
+      { min: 100800,  max: 211400,  r: 0.22 },
+      { min: 211400,  max: 403550,  r: 0.24 },
+      { min: 403550,  max: 512450,  r: 0.32 },
+      { min: 512450,  max: 768700,  r: 0.35 },
+      { min: 768700,  max: Infinity,r: 0.37 }
+    ]
   };
-  const STD = { single: 15000, married: 30000 };
+
+  // 2026 Standard Deductions (IRS Rev. Proc. 2025-32)
+  const STD = { single: 16100, married: 32200 };
+
+  // SS wage base — 2025 figure used; 2026 official figure not yet confirmed
   const SS_CAP = 176100;
+
+  // QBI phase-out thresholds for 2026
+  const QBI_THRESHOLD = { single: 201775, married: 403500 };
+  const QBI_PHASEOUT_END = { single: 276775, married: 553500 };
 
   function fedTax(income, status) {
     let tax = 0, inc = Math.max(0, income);
@@ -395,16 +438,26 @@
     return tax;
   }
 
+  function qbiRate(netProfit, totalIncome, status) {
+    const threshold = QBI_THRESHOLD[status];
+    const phaseoutEnd = QBI_PHASEOUT_END[status];
+    if (totalIncome <= threshold) return 0.20;
+    if (totalIncome >= phaseoutEnd) return 0;
+    // Linear phase-out
+    const pct = (totalIncome - threshold) / (phaseoutEnd - threshold);
+    return 0.20 * (1 - pct);
+  }
+
   function fmt(n) {
     const rounded = Math.round(n);
     return (rounded < 0 ? '−$' : '$') + Math.abs(rounded).toLocaleString('en-US');
   }
 
   function run() {
-    const gross   = Math.max(0, parseFloat(document.getElementById('gross').value)    || 0);
-    const exp     = Math.max(0, parseFloat(document.getElementById('expenses').value) || 0);
-    const other   = Math.max(0, parseFloat(document.getElementById('other').value)    || 0);
-    const status  = document.getElementById('status').value;
+    const gross  = Math.max(0, parseFloat(document.getElementById('gross').value)    || 0);
+    const exp    = Math.max(0, parseFloat(document.getElementById('expenses').value) || 0);
+    const other  = Math.max(0, parseFloat(document.getElementById('other').value)    || 0);
+    const status = document.getElementById('status').value;
 
     if (gross === 0) {
       document.getElementById('empty').classList.remove('hidden');
@@ -415,15 +468,17 @@
     const net = Math.max(0, gross - exp);
 
     // SE Tax — SS capped at wage base (offset by W-2 other income), Medicare uncapped
-    const otherForSS   = Math.min(other, SS_CAP);
-    const netForSS     = Math.max(0, Math.min(net, SS_CAP - otherForSS));
-    const ssTax        = netForSS * 0.9235 * 0.124;
-    const medicareTax  = net * 0.9235 * 0.029;
-    const seTax        = ssTax + medicareTax;
+    const otherForSS  = Math.min(other, SS_CAP);
+    const netForSS    = Math.max(0, Math.min(net, SS_CAP - otherForSS));
+    const ssTax       = netForSS * 0.9235 * 0.124;
+    const medicareTax = net * 0.9235 * 0.029;
+    const seTax       = ssTax + medicareTax;
 
-    // Above-the-line deductions against taxable income
-    const seDeduction  = seTax / 2;
-    const qbiDeduction = net * 0.20;
+    // Above-the-line deductions
+    const seDeduction = seTax / 2;
+    const totalIncomeForQbi = other + net;
+    const qbiRate_    = qbiRate(net, totalIncomeForQbi, status);
+    const qbiDeduction = net * qbiRate_;
 
     const sideHustleTaxable = Math.max(0, net - seDeduction - qbiDeduction);
     const stdDed = STD[status];
@@ -433,9 +488,9 @@
     const withoutSide = fedTax(Math.max(0, other - stdDed), status);
     const addlFed     = Math.max(0, withSide - withoutSide);
 
-    const totalTax   = seTax + addlFed;
-    const setPct     = net > 0 ? (totalTax / net) * 100 : 0;
-    const quarterly  = totalTax / 4;
+    const totalTax  = seTax + addlFed;
+    const setPct    = net > 0 ? (totalTax / net) * 100 : 0;
+    const quarterly = totalTax / 4;
 
     // Show results
     document.getElementById('empty').classList.add('hidden');
