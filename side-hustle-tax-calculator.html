@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side Hustle Tax Calculator — Side Hustle Nation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #f4f8ef;
+      color: #253318;
+      line-height: 1.6;
+      padding: 24px 16px 40px;
+    }
+
+    .calc-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .calc-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .calc-header h1 {
+      font-family: 'Francois One', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: #253318;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .calc-header h1 em {
+      font-style: normal;
+      color: #70ad47;
+    }
+    .calc-header p {
+      color: #5c7245;
+      font-size: 0.95rem;
+    }
+    .year-badge {
+      display: inline-block;
+      background: #d6ecc0;
+      color: #3a6e1a;
+      font-family: 'Francois One', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-top: 8px;
+    }
+
+    /* Input card */
+    .input-card {
+      background: white;
+      border-radius: 14px;
+      padding: 28px 28px 24px;
+      box-shadow: 0 2px 14px rgba(60,100,30,0.09);
+      margin-bottom: 20px;
+    }
+    .section-label {
+      font-family: 'Francois One', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #70ad47;
+      margin-bottom: 18px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 500px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .field label {
+      font-size: 0.82rem;
+      font-weight: bold;
+      color: #3a5228;
+      font-family: Georgia, serif;
+    }
+    .field .hint {
+      font-size: 0.74rem;
+      color: #7a9a60;
+      font-style: italic;
+    }
+    .input-wrap {
+      position: relative;
+    }
+    .input-wrap .prefix {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #70ad47;
+      font-weight: bold;
+      font-size: 0.95rem;
+      pointer-events: none;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 11px 11px 11px 26px;
+      border: 2px solid #c8e0ac;
+      border-radius: 8px;
+      font-size: 0.97rem;
+      font-family: Georgia, serif;
+      color: #253318;
+      background: #fafdfa;
+      transition: border-color 0.18s, background 0.18s;
+      appearance: none;
+      -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+    select { padding-left: 11px; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2370ad47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+    input[type="number"]:focus, select:focus {
+      outline: none;
+      border-color: #70ad47;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(112,173,71,0.15);
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 36px 20px;
+      color: #7a9a60;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 2px 14px rgba(60,100,30,0.09);
+    }
+    .empty-state .icon { font-size: 2.2rem; margin-bottom: 10px; }
+    .empty-state p { font-size: 0.95rem; }
+
+    /* Hero result */
+    .hero-card {
+      background: linear-gradient(140deg, #70ad47 0%, #4e8a2a 100%);
+      border-radius: 14px;
+      padding: 28px 28px 24px;
+      color: white;
+      margin-bottom: 18px;
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+    }
+    .hero-half {
+      flex: 1;
+      text-align: center;
+      padding: 0 12px;
+    }
+    .hero-half + .hero-half {
+      border-left: 1px solid rgba(255,255,255,0.3);
+    }
+    .hero-lbl {
+      font-family: 'Francois One', sans-serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.8;
+      margin-bottom: 6px;
+    }
+    .hero-num {
+      font-family: 'Francois One', sans-serif;
+      font-size: clamp(2.2rem, 8vw, 3.2rem);
+      line-height: 1.05;
+      margin-bottom: 4px;
+    }
+    .hero-sub {
+      font-size: 0.78rem;
+      opacity: 0.75;
+      font-style: italic;
+    }
+    .hero-q-num {
+      font-family: 'Francois One', sans-serif;
+      font-size: clamp(1.6rem, 6vw, 2.4rem);
+      background: rgba(255,255,255,0.18);
+      border-radius: 8px;
+      padding: 6px 16px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    @media (max-width: 460px) {
+      .hero-card { flex-direction: column; gap: 20px; }
+      .hero-half + .hero-half { border-left: none; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; }
+    }
+
+    /* Breakdown */
+    .breakdown-card {
+      background: white;
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 2px 14px rgba(60,100,30,0.09);
+      margin-bottom: 16px;
+    }
+    .breakdown-card .section-label { margin-bottom: 14px; }
+    .brow {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 9px 0;
+      border-bottom: 1px solid #edf4e5;
+      font-size: 0.9rem;
+      gap: 12px;
+    }
+    .brow:last-child { border-bottom: none; }
+    .brow.total-row {
+      border-top: 2px solid #c8e0ac;
+      border-bottom: none;
+      padding-top: 14px;
+      margin-top: 4px;
+      font-size: 1rem;
+    }
+    .brow .blabel { color: #3a5228; flex: 1; }
+    .brow .blabel small { display: block; font-size: 0.73rem; color: #7a9a60; font-style: italic; margin-top: 1px; }
+    .brow .bval { font-weight: bold; color: #253318; white-space: nowrap; }
+    .brow.deduct .bval { color: #5c7245; }
+    .brow.total-row .bval { color: #70ad47; font-size: 1.05rem; }
+
+    /* Disclaimer */
+    .disclaimer {
+      font-size: 0.75rem;
+      color: #7a9a60;
+      font-style: italic;
+      text-align: center;
+      line-height: 1.6;
+      padding: 0 8px;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="calc-wrap">
+
+  <div class="calc-header">
+    <h1>Side Hustle <em>Tax Calculator</em></h1>
+    <p>See exactly how much to set aside — and what you'll owe each quarter.</p>
+    <span class="year-badge">2025 TAX YEAR · FEDERAL ONLY</span>
+  </div>
+
+  <!-- Inputs -->
+  <div class="input-card">
+    <div class="section-label">Your Numbers</div>
+    <div class="form-grid">
+
+      <div class="field">
+        <label for="gross">Annual Side Hustle Income</label>
+        <div class="input-wrap">
+          <span class="prefix">$</span>
+          <input type="number" id="gross" placeholder="0" min="0">
+        </div>
+        <span class="hint">Total revenue before expenses</span>
+      </div>
+
+      <div class="field">
+        <label for="expenses">Business Expenses</label>
+        <div class="input-wrap">
+          <span class="prefix">$</span>
+          <input type="number" id="expenses" placeholder="0" min="0">
+        </div>
+        <span class="hint">Deductible costs — tools, mileage, software</span>
+      </div>
+
+      <div class="field">
+        <label for="other">Other Annual Income</label>
+        <div class="input-wrap">
+          <span class="prefix">$</span>
+          <input type="number" id="other" placeholder="0" min="0">
+        </div>
+        <span class="hint">Day job salary, spouse income, etc.</span>
+      </div>
+
+      <div class="field">
+        <label for="status">Filing Status</label>
+        <div class="input-wrap">
+          <select id="status">
+            <option value="single">Single</option>
+            <option value="married">Married Filing Jointly</option>
+          </select>
+        </div>
+        <span class="hint">Affects your tax brackets and standard deduction</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div id="empty" class="empty-state">
+    <div class="icon">🧮</div>
+    <p>Enter your income above to see your estimated tax bill.</p>
+  </div>
+
+  <!-- Results -->
+  <div id="results" class="hidden">
+
+    <div class="hero-card">
+      <div class="hero-half">
+        <div class="hero-lbl">Set aside from net profit</div>
+        <div class="hero-num" id="h-pct">—</div>
+        <div class="hero-sub">of every dollar earned goes to taxes</div>
+      </div>
+      <div class="hero-half">
+        <div class="hero-lbl">Estimated quarterly payment</div>
+        <div class="hero-q-num" id="h-quarterly">—</div>
+        <div class="hero-sub">due Apr · Jun · Sep · Jan</div>
+      </div>
+    </div>
+
+    <div class="breakdown-card">
+      <div class="section-label">How We Got There</div>
+
+      <div class="brow">
+        <span class="blabel">Gross income</span>
+        <span class="bval" id="b-gross">—</span>
+      </div>
+      <div class="brow deduct">
+        <span class="blabel">
+          Business expenses
+          <small>deducted from gross income</small>
+        </span>
+        <span class="bval" id="b-exp">—</span>
+      </div>
+      <div class="brow">
+        <span class="blabel"><strong>Net profit</strong></span>
+        <span class="bval" id="b-net">—</span>
+      </div>
+
+      <div class="brow" style="padding-top:14px;">
+        <span class="blabel">
+          Self-employment tax
+          <small>Social Security + Medicare on net profit (~15.3%)</small>
+        </span>
+        <span class="bval" id="b-se">—</span>
+      </div>
+      <div class="brow deduct">
+        <span class="blabel">
+          SE tax deduction
+          <small>deduct half of SE tax from your AGI</small>
+        </span>
+        <span class="bval" id="b-sed">—</span>
+      </div>
+      <div class="brow deduct">
+        <span class="blabel">
+          QBI deduction (§199A)
+          <small>20% pass-through deduction — income limits apply</small>
+        </span>
+        <span class="bval" id="b-qbi">—</span>
+      </div>
+      <div class="brow">
+        <span class="blabel">
+          Additional federal income tax
+          <small>your side hustle income is taxed at your marginal rate</small>
+        </span>
+        <span class="bval" id="b-fed">—</span>
+      </div>
+
+      <div class="brow total-row">
+        <span class="blabel"><strong>Total estimated tax on side hustle</strong></span>
+        <span class="bval" id="b-total">—</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="disclaimer">
+    Estimates use 2025 federal tax brackets and standard deductions (single: $15,000 · married: $30,000).
+    Does not include state income tax, alternative minimum tax, additional Medicare surtax, or QBI phase-out at higher incomes.
+    Not tax advice — talk to a CPA or enrolled agent for your specific situation.
+  </p>
+
+</div>
+<script>
+  const BRACKETS = {
+    single:  [{min:0,max:11925,r:.10},{min:11925,max:48475,r:.12},{min:48475,max:103350,r:.22},{min:103350,max:197300,r:.24},{min:197300,max:250525,r:.32},{min:250525,max:Infinity,r:.37}],
+    married: [{min:0,max:23850,r:.10},{min:23850,max:96950,r:.12},{min:96950,max:206700,r:.22},{min:206700,max:394600,r:.24},{min:394600,max:501050,r:.32},{min:501050,max:Infinity,r:.37}]
+  };
+  const STD = { single: 15000, married: 30000 };
+  const SS_CAP = 176100;
+
+  function fedTax(income, status) {
+    let tax = 0, inc = Math.max(0, income);
+    for (const b of BRACKETS[status]) {
+      if (inc <= b.min) break;
+      tax += (Math.min(inc, b.max) - b.min) * b.r;
+    }
+    return tax;
+  }
+
+  function fmt(n) {
+    const rounded = Math.round(n);
+    return (rounded < 0 ? '−$' : '$') + Math.abs(rounded).toLocaleString('en-US');
+  }
+
+  function run() {
+    const gross   = Math.max(0, parseFloat(document.getElementById('gross').value)    || 0);
+    const exp     = Math.max(0, parseFloat(document.getElementById('expenses').value) || 0);
+    const other   = Math.max(0, parseFloat(document.getElementById('other').value)    || 0);
+    const status  = document.getElementById('status').value;
+
+    if (gross === 0) {
+      document.getElementById('empty').classList.remove('hidden');
+      document.getElementById('results').classList.add('hidden');
+      return;
+    }
+
+    const net = Math.max(0, gross - exp);
+
+    // SE Tax — SS capped at wage base (offset by W-2 other income), Medicare uncapped
+    const otherForSS   = Math.min(other, SS_CAP);
+    const netForSS     = Math.max(0, Math.min(net, SS_CAP - otherForSS));
+    const ssTax        = netForSS * 0.9235 * 0.124;
+    const medicareTax  = net * 0.9235 * 0.029;
+    const seTax        = ssTax + medicareTax;
+
+    // Above-the-line deductions against taxable income
+    const seDeduction  = seTax / 2;
+    const qbiDeduction = net * 0.20;
+
+    const sideHustleTaxable = Math.max(0, net - seDeduction - qbiDeduction);
+    const stdDed = STD[status];
+
+    // Marginal federal tax attributable to side hustle
+    const withSide    = fedTax(Math.max(0, other + sideHustleTaxable - stdDed), status);
+    const withoutSide = fedTax(Math.max(0, other - stdDed), status);
+    const addlFed     = Math.max(0, withSide - withoutSide);
+
+    const totalTax   = seTax + addlFed;
+    const setPct     = net > 0 ? (totalTax / net) * 100 : 0;
+    const quarterly  = totalTax / 4;
+
+    // Show results
+    document.getElementById('empty').classList.add('hidden');
+    document.getElementById('results').classList.remove('hidden');
+
+    document.getElementById('h-pct').textContent       = Math.round(setPct) + '%';
+    document.getElementById('h-quarterly').textContent = fmt(quarterly);
+    document.getElementById('b-gross').textContent     = fmt(gross);
+    document.getElementById('b-exp').textContent       = '−' + fmt(exp);
+    document.getElementById('b-net').textContent       = fmt(net);
+    document.getElementById('b-se').textContent        = fmt(seTax);
+    document.getElementById('b-sed').textContent       = '−' + fmt(seDeduction);
+    document.getElementById('b-qbi').textContent       = '−' + fmt(qbiDeduction);
+    document.getElementById('b-fed').textContent       = fmt(addlFed);
+    document.getElementById('b-total').textContent     = fmt(totalTax);
+  }
+
+  ['gross','expenses','other','status'].forEach(id =>
+    document.getElementById(id).addEventListener('input', run)
+  );
+</script>
+</body>
+</html>
