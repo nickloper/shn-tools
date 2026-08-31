@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: Georgia, 'Times New Roman', serif;
       background: #f4f8ef;
@@ -15,134 +14,77 @@
       line-height: 1.6;
       padding: 24px 16px 40px;
     }
-
-    .calc-wrap {
-      max-width: 680px;
-      margin: 0 auto;
-    }
+    .calc-wrap { max-width: 680px; margin: 0 auto; }
 
     /* Header */
-    .calc-header {
-      text-align: center;
-      margin-bottom: 28px;
-    }
+    .calc-header { text-align: center; margin-bottom: 28px; }
     .calc-header h1 {
       font-family: 'Francois One', sans-serif;
       font-size: clamp(1.6rem, 4vw, 2.2rem);
-      color: #253318;
-      line-height: 1.2;
-      margin-bottom: 6px;
+      color: #253318; line-height: 1.2; margin-bottom: 6px;
     }
-    .calc-header h1 em {
-      font-style: normal;
-      color: #70ad47;
-    }
-    .calc-header p {
-      color: #5c7245;
-      font-size: 0.95rem;
-    }
+    .calc-header h1 em { font-style: normal; color: #70ad47; }
+    .calc-header p { color: #5c7245; font-size: 0.95rem; }
     .year-badge {
-      display: inline-block;
-      background: #d6ecc0;
-      color: #3a6e1a;
-      font-family: 'Francois One', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.06em;
-      padding: 2px 10px;
-      border-radius: 20px;
-      margin-top: 8px;
+      display: inline-block; background: #d6ecc0; color: #3a6e1a;
+      font-family: 'Francois One', sans-serif; font-size: 0.7rem;
+      letter-spacing: 0.06em; padding: 2px 10px; border-radius: 20px; margin-top: 8px;
     }
 
     /* Input card */
     .input-card {
-      background: white;
-      border-radius: 14px;
-      padding: 28px 28px 24px;
-      box-shadow: 0 2px 14px rgba(60,100,30,0.09);
-      margin-bottom: 20px;
+      background: white; border-radius: 14px; padding: 28px 28px 24px;
+      box-shadow: 0 2px 14px rgba(60,100,30,0.09); margin-bottom: 20px;
     }
     .section-label {
-      font-family: 'Francois One', sans-serif;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #70ad47;
-      margin-bottom: 18px;
+      font-family: 'Francois One', sans-serif; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.1em; color: #70ad47; margin-bottom: 18px;
     }
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-row-single { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     @media (max-width: 500px) {
       .form-grid { grid-template-columns: 1fr; }
+      .form-row-single { grid-template-columns: 1fr; }
     }
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .field label {
-      font-size: 0.82rem;
-      font-weight: bold;
-      color: #3a5228;
-      font-family: Georgia, serif;
-    }
-    .field .hint {
-      font-size: 0.74rem;
-      color: #7a9a60;
-      font-style: italic;
-    }
-    .input-wrap {
-      position: relative;
-    }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 0.82rem; font-weight: bold; color: #3a5228; font-family: Georgia, serif; }
+    .field .hint { font-size: 0.74rem; color: #7a9a60; font-style: italic; }
+    .input-wrap { position: relative; }
     .input-wrap .prefix {
-      position: absolute;
-      left: 11px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #70ad47;
-      font-weight: bold;
-      font-size: 0.95rem;
-      pointer-events: none;
+      position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+      color: #70ad47; font-weight: bold; font-size: 0.95rem; pointer-events: none;
     }
     input[type="number"], select {
-      width: 100%;
-      padding: 11px 11px 11px 26px;
-      border: 2px solid #c8e0ac;
-      border-radius: 8px;
-      font-size: 0.97rem;
-      font-family: Georgia, serif;
-      color: #253318;
-      background: #fafdfa;
+      width: 100%; padding: 11px 11px 11px 26px; border: 2px solid #c8e0ac;
+      border-radius: 8px; font-size: 0.97rem; font-family: Georgia, serif;
+      color: #253318; background: #fafdfa;
       transition: border-color 0.18s, background 0.18s;
-      appearance: none;
-      -moz-appearance: textfield;
+      appearance: none; -moz-appearance: textfield;
     }
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
     select {
-      padding-left: 11px;
-      cursor: pointer;
+      padding-left: 11px; cursor: pointer;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2370ad47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-      padding-right: 32px;
+      background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px;
     }
     input[type="number"]:focus, select:focus {
-      outline: none;
-      border-color: #70ad47;
-      background: white;
+      outline: none; border-color: #70ad47; background: white;
       box-shadow: 0 0 0 3px rgba(112,173,71,0.15);
     }
 
+    /* No-tax state notice */
+    .notax-notice {
+      background: #f0fae6; border: 1px solid #b8dda0; border-radius: 8px;
+      padding: 10px 14px; font-size: 0.8rem; color: #3a6e1a; margin-top: 4px;
+      display: none;
+    }
+    .notax-notice.visible { display: block; }
+
     /* Empty state */
     .empty-state {
-      text-align: center;
-      padding: 36px 20px;
-      color: #7a9a60;
-      background: white;
-      border-radius: 14px;
+      text-align: center; padding: 36px 20px; color: #7a9a60;
+      background: white; border-radius: 14px;
       box-shadow: 0 2px 14px rgba(60,100,30,0.09);
     }
     .empty-state .icon { font-size: 2.2rem; margin-bottom: 10px; }
@@ -151,107 +93,54 @@
     /* Hero result */
     .hero-card {
       background: linear-gradient(140deg, #70ad47 0%, #4e8a2a 100%);
-      border-radius: 14px;
-      padding: 28px 28px 24px;
-      color: white;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: stretch;
+      border-radius: 14px; padding: 28px 28px 24px; color: white;
+      margin-bottom: 18px; display: flex; align-items: stretch;
     }
-    .hero-half {
-      flex: 1;
-      text-align: center;
-      padding: 0 12px;
-    }
-    .hero-half + .hero-half {
-      border-left: 1px solid rgba(255,255,255,0.3);
-    }
+    .hero-half { flex: 1; text-align: center; padding: 0 12px; }
+    .hero-half + .hero-half { border-left: 1px solid rgba(255,255,255,0.3); }
     .hero-lbl {
-      font-family: 'Francois One', sans-serif;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      opacity: 0.8;
-      margin-bottom: 6px;
+      font-family: 'Francois One', sans-serif; font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.8; margin-bottom: 6px;
     }
-    .hero-num {
-      font-family: 'Francois One', sans-serif;
-      font-size: clamp(2.2rem, 8vw, 3.2rem);
-      line-height: 1.05;
-      margin-bottom: 4px;
-    }
-    .hero-sub {
-      font-size: 0.78rem;
-      opacity: 0.75;
-      font-style: italic;
-    }
+    .hero-num { font-family: 'Francois One', sans-serif; font-size: clamp(2.2rem, 8vw, 3.2rem); line-height: 1.05; margin-bottom: 4px; }
+    .hero-sub { font-size: 0.78rem; opacity: 0.75; font-style: italic; }
     .hero-q-num {
-      font-family: 'Francois One', sans-serif;
-      font-size: clamp(1.6rem, 6vw, 2.4rem);
-      background: rgba(255,255,255,0.18);
-      border-radius: 8px;
-      padding: 6px 16px;
-      display: inline-block;
-      margin-bottom: 4px;
+      font-family: 'Francois One', sans-serif; font-size: clamp(1.6rem, 6vw, 2.4rem);
+      background: rgba(255,255,255,0.18); border-radius: 8px; padding: 6px 16px;
+      display: inline-block; margin-bottom: 4px;
     }
     @media (max-width: 460px) {
       .hero-card { flex-direction: column; gap: 20px; }
-      .hero-half + .hero-half {
-        border-left: none;
-        border-top: 1px solid rgba(255,255,255,0.3);
-        padding-top: 20px;
-      }
+      .hero-half + .hero-half { border-left: none; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; }
     }
 
     /* Breakdown */
     .breakdown-card {
-      background: white;
-      border-radius: 14px;
-      padding: 28px;
-      box-shadow: 0 2px 14px rgba(60,100,30,0.09);
-      margin-bottom: 16px;
+      background: white; border-radius: 14px; padding: 28px;
+      box-shadow: 0 2px 14px rgba(60,100,30,0.09); margin-bottom: 16px;
     }
     .breakdown-card .section-label { margin-bottom: 14px; }
     .brow {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 9px 0;
-      border-bottom: 1px solid #edf4e5;
-      font-size: 0.9rem;
-      gap: 12px;
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 9px 0; border-bottom: 1px solid #edf4e5; font-size: 0.9rem; gap: 12px;
     }
     .brow:last-child { border-bottom: none; }
     .brow.total-row {
-      border-top: 2px solid #c8e0ac;
-      border-bottom: none;
-      padding-top: 14px;
-      margin-top: 4px;
-      font-size: 1rem;
+      border-top: 2px solid #c8e0ac; border-bottom: none;
+      padding-top: 14px; margin-top: 4px; font-size: 1rem;
     }
     .brow .blabel { color: #3a5228; flex: 1; }
-    .brow .blabel small {
-      display: block;
-      font-size: 0.73rem;
-      color: #7a9a60;
-      font-style: italic;
-      margin-top: 1px;
-    }
+    .brow .blabel small { display: block; font-size: 0.73rem; color: #7a9a60; font-style: italic; margin-top: 1px; }
     .brow .bval { font-weight: bold; color: #253318; white-space: nowrap; }
     .brow.deduct .bval { color: #5c7245; }
     .brow.total-row .bval { color: #70ad47; font-size: 1.05rem; }
+    .brow.notax .bval { color: #7a9a60; font-style: italic; font-weight: normal; }
 
     /* Disclaimer */
     .disclaimer {
-      font-size: 0.75rem;
-      color: #7a9a60;
-      font-style: italic;
-      text-align: center;
-      line-height: 1.6;
-      padding: 0 8px;
-      margin-top: 24px;
+      font-size: 0.75rem; color: #7a9a60; font-style: italic;
+      text-align: center; line-height: 1.6; padding: 0 8px; margin-top: 24px;
     }
-
     .hidden { display: none !important; }
   </style>
 </head>
@@ -261,14 +150,12 @@
   <div class="calc-header">
     <h1>Side Hustle <em>Tax Calculator</em></h1>
     <p>See exactly how much to set aside — and what you'll owe each quarter.</p>
-    <span class="year-badge">2026 TAX YEAR · FEDERAL ONLY</span>
+    <span class="year-badge">2026 TAX YEAR · FEDERAL + STATE</span>
   </div>
 
-  <!-- Inputs -->
   <div class="input-card">
     <div class="section-label">Your Numbers</div>
     <div class="form-grid">
-
       <div class="field">
         <label for="gross">Annual Side Hustle Income</label>
         <div class="input-wrap">
@@ -277,7 +164,6 @@
         </div>
         <span class="hint">Total revenue before expenses</span>
       </div>
-
       <div class="field">
         <label for="expenses">Business Expenses</label>
         <div class="input-wrap">
@@ -286,7 +172,6 @@
         </div>
         <span class="hint">Deductible costs — tools, mileage, software</span>
       </div>
-
       <div class="field">
         <label for="other">Other Annual Income</label>
         <div class="input-wrap">
@@ -295,7 +180,6 @@
         </div>
         <span class="hint">Day job salary, spouse income, etc.</span>
       </div>
-
       <div class="field">
         <label for="status">Filing Status</label>
         <div class="input-wrap">
@@ -306,19 +190,81 @@
         </div>
         <span class="hint">Affects your tax brackets and standard deduction</span>
       </div>
+    </div>
 
+    <div class="form-row-single">
+      <div class="field">
+        <label for="state">State</label>
+        <div class="input-wrap">
+          <select id="state">
+            <option value="">— Select your state —</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">Washington D.C.</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+        </div>
+        <span class="hint">For state income tax estimate</span>
+        <div class="notax-notice" id="notax-notice">
+          ✓ No state income tax on earned income — your federal estimate is your total.
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Empty state -->
   <div id="empty" class="empty-state">
     <div class="icon">🧮</div>
     <p>Enter your income above to see your estimated tax bill.</p>
   </div>
 
-  <!-- Results -->
   <div id="results" class="hidden">
-
     <div class="hero-card">
       <div class="hero-half">
         <div class="hero-lbl">Set aside from net profit</div>
@@ -340,10 +286,7 @@
         <span class="bval" id="b-gross">—</span>
       </div>
       <div class="brow deduct">
-        <span class="blabel">
-          Business expenses
-          <small>deducted from gross income</small>
-        </span>
+        <span class="blabel">Business expenses<small>deducted from gross income</small></span>
         <span class="bval" id="b-exp">—</span>
       </div>
       <div class="brow">
@@ -352,165 +295,254 @@
       </div>
 
       <div class="brow" style="padding-top:14px;">
-        <span class="blabel">
-          Self-employment tax
-          <small>Social Security + Medicare on net profit (~15.3%)</small>
-        </span>
+        <span class="blabel">Self-employment tax<small>Social Security + Medicare (~15.3% on net profit)</small></span>
         <span class="bval" id="b-se">—</span>
       </div>
       <div class="brow deduct">
-        <span class="blabel">
-          SE tax deduction
-          <small>deduct half of SE tax from your AGI</small>
-        </span>
+        <span class="blabel">SE tax deduction<small>deduct half of SE tax from your AGI</small></span>
         <span class="bval" id="b-sed">—</span>
       </div>
       <div class="brow deduct">
-        <span class="blabel">
-          QBI deduction (§199A)
-          <small>20% pass-through deduction — income limits apply above ~$202k</small>
-        </span>
+        <span class="blabel">QBI deduction (§199A)<small>20% pass-through deduction — income limits apply above ~$202k</small></span>
         <span class="bval" id="b-qbi">—</span>
       </div>
       <div class="brow">
-        <span class="blabel">
-          Additional federal income tax
-          <small>your side hustle income is taxed at your marginal rate</small>
-        </span>
+        <span class="blabel">Federal income tax<small>marginal rate on top of your other income</small></span>
         <span class="bval" id="b-fed">—</span>
+      </div>
+      <div class="brow" id="b-state-row">
+        <span class="blabel" id="b-state-label">State income tax<small id="b-state-hint"></small></span>
+        <span class="bval" id="b-state">—</span>
       </div>
 
       <div class="brow total-row">
-        <span class="blabel"><strong>Total estimated tax on side hustle</strong></span>
+        <span class="blabel"><strong>Total estimated tax</strong></span>
         <span class="bval" id="b-total">—</span>
       </div>
     </div>
-
   </div>
 
   <p class="disclaimer">
-    Estimates use 2026 federal tax brackets (IRS Rev. Proc. 2025-32) and standard deductions (single: $16,100 · married: $32,200).
-    Does not include state income tax, alternative minimum tax, additional Medicare surtax, or QBI phase-out at higher incomes.
-    Not tax advice — talk to a CPA or enrolled agent for your specific situation.
+    Federal estimates use 2026 brackets (IRS Rev. Proc. 2025-32) and standard deductions (single: $16,100 · married: $32,200).
+    State estimates use approximate 2025–2026 rates and do not include state-specific deductions, credits, or local taxes.
+    Not tax advice — consult a CPA or enrolled agent for your situation.
   </p>
 
 </div>
 <script>
-  // 2026 Federal Tax Brackets — IRS Revenue Procedure 2025-32
-  // Note: OBBBA restored a 35% bracket between 32% and 37%
-  const BRACKETS = {
-    single: [
-      { min: 0,       max: 12400,   r: 0.10 },
-      { min: 12400,   max: 50400,   r: 0.12 },
-      { min: 50400,   max: 105700,  r: 0.22 },
-      { min: 105700,  max: 201775,  r: 0.24 },
-      { min: 201775,  max: 256225,  r: 0.32 },
-      { min: 256225,  max: 640600,  r: 0.35 },
-      { min: 640600,  max: Infinity,r: 0.37 }
-    ],
-    married: [
-      { min: 0,       max: 24800,   r: 0.10 },
-      { min: 24800,   max: 100800,  r: 0.12 },
-      { min: 100800,  max: 211400,  r: 0.22 },
-      { min: 211400,  max: 403550,  r: 0.24 },
-      { min: 403550,  max: 512450,  r: 0.32 },
-      { min: 512450,  max: 768700,  r: 0.35 },
-      { min: 768700,  max: Infinity,r: 0.37 }
-    ]
-  };
+// ── 2026 Federal brackets ────────────────────────────────────────────
+const FED = {
+  single:  [{min:0,max:12400,r:.10},{min:12400,max:50400,r:.12},{min:50400,max:105700,r:.22},{min:105700,max:201775,r:.24},{min:201775,max:256225,r:.32},{min:256225,max:640600,r:.35},{min:640600,max:Infinity,r:.37}],
+  married: [{min:0,max:24800,r:.10},{min:24800,max:100800,r:.12},{min:100800,max:211400,r:.22},{min:211400,max:403550,r:.24},{min:403550,max:512450,r:.32},{min:512450,max:768700,r:.35},{min:768700,max:Infinity,r:.37}]
+};
+const STD = {single:16100, married:32200};
+const SS_CAP = 176100;
+const QBI_LO = {single:201775, married:403500};
+const QBI_HI = {single:276775, married:553500};
 
-  // 2026 Standard Deductions (IRS Rev. Proc. 2025-32)
-  const STD = { single: 16100, married: 32200 };
+// ── State income tax data (approx 2025-2026 rates) ──────────────────
+// null = no state income tax on earned income
+const STATE = {
+  AL:{n:'Alabama',      b:{single:[{min:0,max:500,r:.02},{min:500,max:3000,r:.04},{min:3000,max:Infinity,r:.05}],        married:[{min:0,max:1000,r:.02},{min:1000,max:6000,r:.04},{min:6000,max:Infinity,r:.05}]}},
+  AK:{n:'Alaska',       b:null},
+  AZ:{n:'Arizona',      b:{single:[{min:0,max:Infinity,r:.025}],                                                          married:[{min:0,max:Infinity,r:.025}]}},
+  AR:{n:'Arkansas',     b:{single:[{min:0,max:4999,r:.02},{min:4999,max:Infinity,r:.044}],                               married:[{min:0,max:4999,r:.02},{min:4999,max:Infinity,r:.044}]}},
+  CA:{n:'California',   b:{single:[{min:0,max:10412,r:.01},{min:10412,max:24684,r:.02},{min:24684,max:38959,r:.04},{min:38959,max:54081,r:.06},{min:54081,max:68350,r:.08},{min:68350,max:349137,r:.093},{min:349137,max:418961,r:.103},{min:418961,max:698271,r:.113},{min:698271,max:Infinity,r:.123}],
+                                   married:[{min:0,max:20824,r:.01},{min:20824,max:49368,r:.02},{min:49368,max:77918,r:.04},{min:77918,max:108162,r:.06},{min:108162,max:136700,r:.08},{min:136700,max:698274,r:.093},{min:698274,max:837922,r:.103},{min:837922,max:1000000,r:.113},{min:1000000,max:Infinity,r:.123}]}},
+  CO:{n:'Colorado',     b:{single:[{min:0,max:Infinity,r:.044}],                                                          married:[{min:0,max:Infinity,r:.044}]}},
+  CT:{n:'Connecticut',  b:{single:[{min:0,max:10000,r:.03},{min:10000,max:50000,r:.05},{min:50000,max:100000,r:.055},{min:100000,max:200000,r:.06},{min:200000,max:250000,r:.065},{min:250000,max:500000,r:.069},{min:500000,max:Infinity,r:.0699}],
+                                   married:[{min:0,max:20000,r:.03},{min:20000,max:100000,r:.05},{min:100000,max:200000,r:.055},{min:200000,max:400000,r:.06},{min:400000,max:500000,r:.065},{min:500000,max:1000000,r:.069},{min:1000000,max:Infinity,r:.0699}]}},
+  DE:{n:'Delaware',     b:{single:[{min:0,max:2000,r:0},{min:2000,max:5000,r:.022},{min:5000,max:10000,r:.039},{min:10000,max:20000,r:.048},{min:20000,max:25000,r:.052},{min:25000,max:60000,r:.055},{min:60000,max:Infinity,r:.066}],
+                                   married:[{min:0,max:2000,r:0},{min:2000,max:5000,r:.022},{min:5000,max:10000,r:.039},{min:10000,max:20000,r:.048},{min:20000,max:25000,r:.052},{min:25000,max:60000,r:.055},{min:60000,max:Infinity,r:.066}]}},
+  DC:{n:'Washington D.C.',b:{single:[{min:0,max:10000,r:.04},{min:10000,max:40000,r:.06},{min:40000,max:60000,r:.065},{min:60000,max:250000,r:.085},{min:250000,max:500000,r:.0925},{min:500000,max:1000000,r:.0975},{min:1000000,max:Infinity,r:.1075}],
+                                     married:[{min:0,max:10000,r:.04},{min:10000,max:40000,r:.06},{min:40000,max:60000,r:.065},{min:60000,max:250000,r:.085},{min:250000,max:500000,r:.0925},{min:500000,max:1000000,r:.0975},{min:1000000,max:Infinity,r:.1075}]}},
+  FL:{n:'Florida',      b:null},
+  GA:{n:'Georgia',      b:{single:[{min:0,max:Infinity,r:.0539}],                                                         married:[{min:0,max:Infinity,r:.0539}]}},
+  HI:{n:'Hawaii',       b:{single:[{min:0,max:2400,r:.014},{min:2400,max:4800,r:.032},{min:4800,max:9600,r:.055},{min:9600,max:14400,r:.064},{min:14400,max:19200,r:.068},{min:19200,max:24000,r:.072},{min:24000,max:48000,r:.076},{min:48000,max:150000,r:.079},{min:150000,max:175000,r:.0825},{min:175000,max:200000,r:.09},{min:200000,max:Infinity,r:.11}],
+                                   married:[{min:0,max:4800,r:.014},{min:4800,max:9600,r:.032},{min:9600,max:19200,r:.055},{min:19200,max:28800,r:.064},{min:28800,max:38400,r:.068},{min:38400,max:48000,r:.072},{min:48000,max:96000,r:.076},{min:96000,max:300000,r:.079},{min:300000,max:350000,r:.0825},{min:350000,max:400000,r:.09},{min:400000,max:Infinity,r:.11}]}},
+  ID:{n:'Idaho',        b:{single:[{min:0,max:Infinity,r:.058}],                                                          married:[{min:0,max:Infinity,r:.058}]}},
+  IL:{n:'Illinois',     b:{single:[{min:0,max:Infinity,r:.0495}],                                                         married:[{min:0,max:Infinity,r:.0495}]}},
+  IN:{n:'Indiana',      b:{single:[{min:0,max:Infinity,r:.0305}],                                                         married:[{min:0,max:Infinity,r:.0305}]}},
+  IA:{n:'Iowa',         b:{single:[{min:0,max:Infinity,r:.038}],                                                          married:[{min:0,max:Infinity,r:.038}]}},
+  KS:{n:'Kansas',       b:{single:[{min:0,max:15000,r:.031},{min:15000,max:30000,r:.0525},{min:30000,max:Infinity,r:.057}],
+                                   married:[{min:0,max:30000,r:.031},{min:30000,max:60000,r:.0525},{min:60000,max:Infinity,r:.057}]}},
+  KY:{n:'Kentucky',     b:{single:[{min:0,max:Infinity,r:.04}],                                                           married:[{min:0,max:Infinity,r:.04}]}},
+  LA:{n:'Louisiana',    b:{single:[{min:0,max:Infinity,r:.03}],                                                           married:[{min:0,max:Infinity,r:.03}]}},
+  ME:{n:'Maine',        b:{single:[{min:0,max:26050,r:.058},{min:26050,max:61600,r:.0675},{min:61600,max:Infinity,r:.0715}],
+                                   married:[{min:0,max:52100,r:.058},{min:52100,max:123250,r:.0675},{min:123250,max:Infinity,r:.0715}]}},
+  MD:{n:'Maryland',     b:{single:[{min:0,max:1000,r:.02},{min:1000,max:2000,r:.03},{min:2000,max:3000,r:.04},{min:3000,max:100000,r:.0475},{min:100000,max:125000,r:.05},{min:125000,max:150000,r:.0525},{min:150000,max:250000,r:.055},{min:250000,max:Infinity,r:.0575}],
+                                   married:[{min:0,max:1000,r:.02},{min:1000,max:2000,r:.03},{min:2000,max:3000,r:.04},{min:3000,max:150000,r:.0475},{min:150000,max:175000,r:.05},{min:175000,max:225000,r:.0525},{min:225000,max:300000,r:.055},{min:300000,max:Infinity,r:.0575}]}},
+  MA:{n:'Massachusetts',b:{single:[{min:0,max:1000000,r:.05},{min:1000000,max:Infinity,r:.09}],                           married:[{min:0,max:1000000,r:.05},{min:1000000,max:Infinity,r:.09}]}},
+  MI:{n:'Michigan',     b:{single:[{min:0,max:Infinity,r:.0425}],                                                         married:[{min:0,max:Infinity,r:.0425}]}},
+  MN:{n:'Minnesota',    b:{single:[{min:0,max:31690,r:.0535},{min:31690,max:104090,r:.068},{min:104090,max:193240,r:.0785},{min:193240,max:Infinity,r:.0985}],
+                                   married:[{min:0,max:46330,r:.0535},{min:46330,max:184040,r:.068},{min:184040,max:321450,r:.0785},{min:321450,max:Infinity,r:.0985}]}},
+  MS:{n:'Mississippi',  b:{single:[{min:0,max:Infinity,r:.044}],                                                          married:[{min:0,max:Infinity,r:.044}]}},
+  MO:{n:'Missouri',     b:{single:[{min:0,max:1207,r:0},{min:1207,max:2414,r:.02},{min:2414,max:3621,r:.025},{min:3621,max:4828,r:.03},{min:4828,max:6035,r:.035},{min:6035,max:7242,r:.04},{min:7242,max:8449,r:.045},{min:8449,max:Infinity,r:.048}],
+                                   married:[{min:0,max:1207,r:0},{min:1207,max:2414,r:.02},{min:2414,max:3621,r:.025},{min:3621,max:4828,r:.03},{min:4828,max:6035,r:.035},{min:6035,max:7242,r:.04},{min:7242,max:8449,r:.045},{min:8449,max:Infinity,r:.048}]}},
+  MT:{n:'Montana',      b:{single:[{min:0,max:20500,r:.047},{min:20500,max:Infinity,r:.059}],                             married:[{min:0,max:41000,r:.047},{min:41000,max:Infinity,r:.059}]}},
+  NE:{n:'Nebraska',     b:{single:[{min:0,max:3700,r:.0246},{min:3700,max:22170,r:.0351},{min:22170,max:35730,r:.0501},{min:35730,max:Infinity,r:.0584}],
+                                   married:[{min:0,max:7390,r:.0246},{min:7390,max:44350,r:.0351},{min:44350,max:71470,r:.0501},{min:71470,max:Infinity,r:.0584}]}},
+  NV:{n:'Nevada',       b:null},
+  NH:{n:'New Hampshire',b:null},
+  NJ:{n:'New Jersey',   b:{single:[{min:0,max:20000,r:.014},{min:20000,max:35000,r:.0175},{min:35000,max:40000,r:.035},{min:40000,max:75000,r:.05525},{min:75000,max:500000,r:.0637},{min:500000,max:1000000,r:.0897},{min:1000000,max:Infinity,r:.1075}],
+                                   married:[{min:0,max:20000,r:.014},{min:20000,max:50000,r:.0175},{min:50000,max:70000,r:.0245},{min:70000,max:80000,r:.035},{min:80000,max:150000,r:.05525},{min:150000,max:500000,r:.0637},{min:500000,max:1000000,r:.0897},{min:1000000,max:Infinity,r:.1075}]}},
+  NM:{n:'New Mexico',   b:{single:[{min:0,max:5500,r:.017},{min:5500,max:11000,r:.032},{min:11000,max:16000,r:.047},{min:16000,max:210000,r:.049},{min:210000,max:Infinity,r:.059}],
+                                   married:[{min:0,max:8000,r:.017},{min:8000,max:16000,r:.032},{min:16000,max:24000,r:.047},{min:24000,max:315000,r:.049},{min:315000,max:Infinity,r:.059}]}},
+  NY:{n:'New York',     b:{single:[{min:0,max:17150,r:.04},{min:17150,max:23600,r:.045},{min:23600,max:27900,r:.0525},{min:27900,max:161550,r:.055},{min:161550,max:323200,r:.06},{min:323200,max:2155350,r:.0685},{min:2155350,max:Infinity,r:.109}],
+                                   married:[{min:0,max:27900,r:.04},{min:27900,max:43000,r:.045},{min:43000,max:161550,r:.0525},{min:161550,max:323200,r:.055},{min:323200,max:2155350,r:.06},{min:2155350,max:Infinity,r:.109}]}},
+  NC:{n:'North Carolina',b:{single:[{min:0,max:Infinity,r:.045}],                                                         married:[{min:0,max:Infinity,r:.045}]}},
+  ND:{n:'North Dakota', b:{single:[{min:0,max:44725,r:.011},{min:44725,max:225975,r:.0204},{min:225975,max:Infinity,r:.029}],
+                                   married:[{min:0,max:74750,r:.011},{min:74750,max:275100,r:.0204},{min:275100,max:Infinity,r:.029}]}},
+  OH:{n:'Ohio',         b:{single:[{min:0,max:26050,r:0},{min:26050,max:100000,r:.0275},{min:100000,max:Infinity,r:.035}],
+                                   married:[{min:0,max:26050,r:0},{min:26050,max:100000,r:.0275},{min:100000,max:Infinity,r:.035}]}},
+  OK:{n:'Oklahoma',     b:{single:[{min:0,max:1000,r:.0025},{min:1000,max:2500,r:.0075},{min:2500,max:3750,r:.0175},{min:3750,max:4900,r:.0275},{min:4900,max:7200,r:.0375},{min:7200,max:Infinity,r:.0475}],
+                                   married:[{min:0,max:2000,r:.0025},{min:2000,max:5000,r:.0075},{min:5000,max:7500,r:.0175},{min:7500,max:9800,r:.0275},{min:9800,max:12200,r:.0375},{min:12200,max:Infinity,r:.0475}]}},
+  OR:{n:'Oregon',       b:{single:[{min:0,max:4050,r:.0475},{min:4050,max:10200,r:.0675},{min:10200,max:125000,r:.0875},{min:125000,max:Infinity,r:.099}],
+                                   married:[{min:0,max:8100,r:.0475},{min:8100,max:20400,r:.0675},{min:20400,max:250000,r:.0875},{min:250000,max:Infinity,r:.099}]}},
+  PA:{n:'Pennsylvania', b:{single:[{min:0,max:Infinity,r:.0307}],                                                         married:[{min:0,max:Infinity,r:.0307}]}},
+  RI:{n:'Rhode Island', b:{single:[{min:0,max:73450,r:.0375},{min:73450,max:166950,r:.0475},{min:166950,max:Infinity,r:.0599}],
+                                   married:[{min:0,max:73450,r:.0375},{min:73450,max:166950,r:.0475},{min:166950,max:Infinity,r:.0599}]}},
+  SC:{n:'South Carolina',b:{single:[{min:0,max:3200,r:0},{min:3200,max:16040,r:.03},{min:16040,max:Infinity,r:.062}],    married:[{min:0,max:3200,r:0},{min:3200,max:16040,r:.03},{min:16040,max:Infinity,r:.062}]}},
+  SD:{n:'South Dakota', b:null},
+  TN:{n:'Tennessee',    b:null},
+  TX:{n:'Texas',        b:null},
+  UT:{n:'Utah',         b:{single:[{min:0,max:Infinity,r:.0455}],                                                         married:[{min:0,max:Infinity,r:.0455}]}},
+  VT:{n:'Vermont',      b:{single:[{min:0,max:45400,r:.0335},{min:45400,max:110050,r:.066},{min:110050,max:229550,r:.076},{min:229550,max:Infinity,r:.0875}],
+                                   married:[{min:0,max:75850,r:.0335},{min:75850,max:183400,r:.066},{min:183400,max:236350,r:.076},{min:236350,max:Infinity,r:.0875}]}},
+  VA:{n:'Virginia',     b:{single:[{min:0,max:3000,r:.02},{min:3000,max:5000,r:.03},{min:5000,max:17000,r:.05},{min:17000,max:Infinity,r:.0575}],
+                                   married:[{min:0,max:3000,r:.02},{min:3000,max:5000,r:.03},{min:5000,max:17000,r:.05},{min:17000,max:Infinity,r:.0575}]}},
+  WA:{n:'Washington',   b:null},
+  WV:{n:'West Virginia',b:{single:[{min:0,max:10000,r:.03},{min:10000,max:25000,r:.04},{min:25000,max:40000,r:.045},{min:40000,max:60000,r:.06},{min:60000,max:Infinity,r:.065}],
+                                   married:[{min:0,max:10000,r:.03},{min:10000,max:25000,r:.04},{min:25000,max:40000,r:.045},{min:40000,max:60000,r:.06},{min:60000,max:Infinity,r:.065}]}},
+  WI:{n:'Wisconsin',    b:{single:[{min:0,max:14320,r:.035},{min:14320,max:28640,r:.044},{min:28640,max:315310,r:.053},{min:315310,max:Infinity,r:.0765}],
+                                   married:[{min:0,max:19090,r:.035},{min:19090,max:38190,r:.044},{min:38190,max:420420,r:.053},{min:420420,max:Infinity,r:.0765}]}},
+  WY:{n:'Wyoming',      b:null}
+};
 
-  // SS wage base — 2025 figure used; 2026 official figure not yet confirmed
-  const SS_CAP = 176100;
+// ── Helpers ─────────────────────────────────────────────────────────
+function applyBrackets(income, brackets) {
+  let tax = 0, inc = Math.max(0, income);
+  for (const b of brackets) {
+    if (inc <= b.min) break;
+    tax += (Math.min(inc, b.max) - b.min) * b.r;
+  }
+  return tax;
+}
 
-  // QBI phase-out thresholds for 2026
-  const QBI_THRESHOLD = { single: 201775, married: 403500 };
-  const QBI_PHASEOUT_END = { single: 276775, married: 553500 };
+function fedTax(income, status) { return applyBrackets(income, FED[status]); }
 
-  function fedTax(income, status) {
-    let tax = 0, inc = Math.max(0, income);
-    for (const b of BRACKETS[status]) {
-      if (inc <= b.min) break;
-      tax += (Math.min(inc, b.max) - b.min) * b.r;
+function stateTax(income, stateCode, status) {
+  const s = STATE[stateCode];
+  if (!s || !s.b) return 0;
+  return applyBrackets(income, s.b[status]);
+}
+
+function fmt(n) {
+  const r = Math.round(n);
+  return (r < 0 ? '-$' : '$') + Math.abs(r).toLocaleString('en-US');
+}
+
+// ── Main calculation ─────────────────────────────────────────────────
+function run() {
+  const gross  = Math.max(0, parseFloat(document.getElementById('gross').value)    || 0);
+  const exp    = Math.max(0, parseFloat(document.getElementById('expenses').value) || 0);
+  const other  = Math.max(0, parseFloat(document.getElementById('other').value)    || 0);
+  const status = document.getElementById('status').value;
+  const stCode = document.getElementById('state').value;
+
+  // No-tax notice
+  const noTaxNotice = document.getElementById('notax-notice');
+  if (stCode && STATE[stCode] && STATE[stCode].b === null) {
+    noTaxNotice.classList.add('visible');
+  } else {
+    noTaxNotice.classList.remove('visible');
+  }
+
+  if (gross === 0) {
+    document.getElementById('empty').classList.remove('hidden');
+    document.getElementById('results').classList.add('hidden');
+    return;
+  }
+
+  const net = Math.max(0, gross - exp);
+
+  // SE Tax
+  const otherForSS  = Math.min(other, SS_CAP);
+  const netForSS    = Math.max(0, Math.min(net, SS_CAP - otherForSS));
+  const ssTax       = netForSS * 0.9235 * 0.124;
+  const medicareTax = net * 0.9235 * 0.029;
+  const seTax       = ssTax + medicareTax;
+
+  // Federal deductions
+  const seDeduction = seTax / 2;
+  const totalForQbi = other + net;
+  const qbiLo = QBI_LO[status], qbiHi = QBI_HI[status];
+  const qbiRate = totalForQbi <= qbiLo ? 0.20 : totalForQbi >= qbiHi ? 0 : 0.20 * (1 - (totalForQbi - qbiLo) / (qbiHi - qbiLo));
+  const qbiDeduction = net * qbiRate;
+
+  const sideHustleFedTaxable = Math.max(0, net - seDeduction - qbiDeduction);
+  const stdDed = STD[status];
+  const fedWith    = fedTax(Math.max(0, other + sideHustleFedTaxable - stdDed), status);
+  const fedWithout = fedTax(Math.max(0, other - stdDed), status);
+  const addlFed = Math.max(0, fedWith - fedWithout);
+
+  // State tax — applied to net profit (after expenses), marginal on top of other income
+  // Most states base tax on federal AGI (which includes SE deduction), but not QBI
+  const sideHustleStateTaxable = Math.max(0, net - seDeduction);
+  let addlState = 0;
+  if (stCode && STATE[stCode] && STATE[stCode].b) {
+    const stWith    = stateTax(other + sideHustleStateTaxable, stCode, status);
+    const stWithout = stateTax(other, stCode, status);
+    addlState = Math.max(0, stWith - stWithout);
+  }
+
+  const totalTax  = seTax + addlFed + addlState;
+  const setPct    = net > 0 ? (totalTax / net) * 100 : 0;
+  const quarterly = totalTax / 4;
+
+  // ── Update UI ─────────────────────────────────────────────────────
+  document.getElementById('empty').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+
+  document.getElementById('h-pct').textContent       = Math.round(setPct) + '%';
+  document.getElementById('h-quarterly').textContent = fmt(quarterly);
+  document.getElementById('b-gross').textContent     = fmt(gross);
+  document.getElementById('b-exp').textContent       = '-' + fmt(exp);
+  document.getElementById('b-net').textContent       = fmt(net);
+  document.getElementById('b-se').textContent        = fmt(seTax);
+  document.getElementById('b-sed').textContent       = '-' + fmt(seDeduction);
+  document.getElementById('b-qbi').textContent       = '-' + fmt(qbiDeduction);
+  document.getElementById('b-fed').textContent       = fmt(addlFed);
+  document.getElementById('b-total').textContent     = fmt(totalTax);
+
+  // State row
+  const stateRow   = document.getElementById('b-state-row');
+  const stateLabel = document.getElementById('b-state-label');
+  const stateHint  = document.getElementById('b-state-hint');
+  const stateVal   = document.getElementById('b-state');
+
+  if (!stCode) {
+    stateRow.classList.add('hidden');
+  } else {
+    stateRow.classList.remove('hidden');
+    const stData = STATE[stCode];
+    if (!stData || !stData.b) {
+      stateRow.classList.add('notax');
+      stateLabel.childNodes[0].textContent = (stData ? stData.n : stCode) + ' state tax';
+      stateHint.textContent = 'no state income tax on earned income';
+      stateVal.textContent = '$0';
+    } else {
+      stateRow.classList.remove('notax');
+      stateLabel.childNodes[0].textContent = (stData.n || stCode) + ' state tax';
+      stateHint.textContent = 'approximate — excludes state-specific deductions';
+      stateVal.textContent = fmt(addlState);
     }
-    return tax;
   }
+}
 
-  function qbiRate(netProfit, totalIncome, status) {
-    const threshold = QBI_THRESHOLD[status];
-    const phaseoutEnd = QBI_PHASEOUT_END[status];
-    if (totalIncome <= threshold) return 0.20;
-    if (totalIncome >= phaseoutEnd) return 0;
-    // Linear phase-out
-    const pct = (totalIncome - threshold) / (phaseoutEnd - threshold);
-    return 0.20 * (1 - pct);
-  }
-
-  function fmt(n) {
-    const rounded = Math.round(n);
-    return (rounded < 0 ? '−$' : '$') + Math.abs(rounded).toLocaleString('en-US');
-  }
-
-  function run() {
-    const gross  = Math.max(0, parseFloat(document.getElementById('gross').value)    || 0);
-    const exp    = Math.max(0, parseFloat(document.getElementById('expenses').value) || 0);
-    const other  = Math.max(0, parseFloat(document.getElementById('other').value)    || 0);
-    const status = document.getElementById('status').value;
-
-    if (gross === 0) {
-      document.getElementById('empty').classList.remove('hidden');
-      document.getElementById('results').classList.add('hidden');
-      return;
-    }
-
-    const net = Math.max(0, gross - exp);
-
-    // SE Tax — SS capped at wage base (offset by W-2 other income), Medicare uncapped
-    const otherForSS  = Math.min(other, SS_CAP);
-    const netForSS    = Math.max(0, Math.min(net, SS_CAP - otherForSS));
-    const ssTax       = netForSS * 0.9235 * 0.124;
-    const medicareTax = net * 0.9235 * 0.029;
-    const seTax       = ssTax + medicareTax;
-
-    // Above-the-line deductions
-    const seDeduction = seTax / 2;
-    const totalIncomeForQbi = other + net;
-    const qbiRate_    = qbiRate(net, totalIncomeForQbi, status);
-    const qbiDeduction = net * qbiRate_;
-
-    const sideHustleTaxable = Math.max(0, net - seDeduction - qbiDeduction);
-    const stdDed = STD[status];
-
-    // Marginal federal tax attributable to side hustle
-    const withSide    = fedTax(Math.max(0, other + sideHustleTaxable - stdDed), status);
-    const withoutSide = fedTax(Math.max(0, other - stdDed), status);
-    const addlFed     = Math.max(0, withSide - withoutSide);
-
-    const totalTax  = seTax + addlFed;
-    const setPct    = net > 0 ? (totalTax / net) * 100 : 0;
-    const quarterly = totalTax / 4;
-
-    // Show results
-    document.getElementById('empty').classList.add('hidden');
-    document.getElementById('results').classList.remove('hidden');
-
-    document.getElementById('h-pct').textContent       = Math.round(setPct) + '%';
-    document.getElementById('h-quarterly').textContent = fmt(quarterly);
-    document.getElementById('b-gross').textContent     = fmt(gross);
-    document.getElementById('b-exp').textContent       = '−' + fmt(exp);
-    document.getElementById('b-net').textContent       = fmt(net);
-    document.getElementById('b-se').textContent        = fmt(seTax);
-    document.getElementById('b-sed').textContent       = '−' + fmt(seDeduction);
-    document.getElementById('b-qbi').textContent       = '−' + fmt(qbiDeduction);
-    document.getElementById('b-fed').textContent       = fmt(addlFed);
-    document.getElementById('b-total').textContent     = fmt(totalTax);
-  }
-
-  ['gross','expenses','other','status'].forEach(id =>
-    document.getElementById(id).addEventListener('input', run)
-  );
+['gross','expenses','other','status','state'].forEach(id =>
+  document.getElementById(id).addEventListener('input', run)
+);
 </script>
 </body>
 </html>
